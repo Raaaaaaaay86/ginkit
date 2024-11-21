@@ -15,8 +15,8 @@ var _ ginutil.RouteGroup = (*User)(nil)
 type User struct {
 }
 
-func (u *User) GetRoutes() []ginutil.GetRouteFunc {
-	return []ginutil.GetRouteFunc{
+func (u *User) GetRoutes() []ginutil.RouteFactory {
+	return []ginutil.RouteFactory{
 		u.GetById,
 	}
 }

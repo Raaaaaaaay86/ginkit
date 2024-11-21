@@ -28,10 +28,10 @@ func (r Route) Handlers() []gin.HandlerFunc {
 	return handlers
 }
 
-type GetRouteFunc func() Route
+type RouteFactory func() Route
 
 type RouteGroup interface {
-	GetRoutes() []GetRouteFunc
+	GetRoutes() []RouteFactory
 }
 
 type RouteGroups []RouteGroup
