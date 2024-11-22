@@ -1,4 +1,4 @@
-package persistence_impl
+package persistenceimpl
 
 import (
 	"fmt"

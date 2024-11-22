@@ -7,8 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/raaaaaaaay86/ginutil"
 	"github.com/raaaaaaaay86/ginutil/example/route/controller"
-	"github.com/raaaaaaaay86/ginutil/example/route/persistence/persistence_impl"
-	"github.com/raaaaaaaay86/ginutil/example/route/service/service_impl"
+	"github.com/raaaaaaaay86/ginutil/example/route/persistence/persistenceimpl"
+	"github.com/raaaaaaaay86/ginutil/example/route/service/serviceimpl"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func Run(ctx context.Context) error {
 
 	ginutil.RouteGroups{
 		controller.NewUser(),
-		controller.NewStore(service_impl.NewStore(persistence_impl.NewStore())),
+		controller.NewStore(serviceimpl.NewStore(persistenceimpl.NewStore())),
 	}.Register(engine)
 
 	return engine.Run(":8080")
