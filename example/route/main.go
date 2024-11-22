@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"net/http"
 
 	"github.com/gin-gonic/gin"
 	"github.com/raaaaaaaay86/ginutil"
@@ -18,6 +19,17 @@ func main() {
 }
 
 func Run(ctx context.Context) error {
+	server := BuildServer()
+	opt := ginutil.ServeOptions{}
+
+	if err := ginutil.Serve(ctx, server, opt); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func BuildServer() *http.Server {
 	engine := gin.Default()
 
 	ginutil.RouteGroups{
@@ -25,5 +37,7 @@ func Run(ctx context.Context) error {
 		controller.NewStore(serviceimpl.NewStore(persistenceimpl.NewStore())),
 	}.Register(engine)
 
-	return engine.Run(":8080")
+	return &http.Server{
+		Handler: engine.Handler(),
+	}
 }
