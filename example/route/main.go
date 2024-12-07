@@ -6,10 +6,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/raaaaaaaay86/ginutil"
-	"github.com/raaaaaaaay86/ginutil/example/route/controller"
-	"github.com/raaaaaaaay86/ginutil/example/route/persistence/persistenceimpl"
-	"github.com/raaaaaaaay86/ginutil/example/route/service/serviceimpl"
+	ginkit "github.com/raaaaaaaay86/ginkit"
+	"github.com/raaaaaaaay86/ginkit/example/route/controller"
+	"github.com/raaaaaaaay86/ginkit/example/route/persistence/persistenceimpl"
+	"github.com/raaaaaaaay86/ginkit/example/route/service/serviceimpl"
 )
 
 func main() {
@@ -20,9 +20,9 @@ func main() {
 
 func Run(ctx context.Context) error {
 	server := BuildServer()
-	opt := ginutil.ServeOptions{}
+	opt := ginkit.ServeOptions{}
 
-	if err := ginutil.Serve(ctx, server, opt); err != nil {
+	if err := ginkit.Serve(ctx, server, opt); err != nil {
 		return err
 	}
 
@@ -32,7 +32,7 @@ func Run(ctx context.Context) error {
 func BuildServer() *http.Server {
 	engine := gin.Default()
 
-	ginutil.RouteGroups{
+	ginkit.RouteGroups{
 		controller.NewUser(),
 		controller.NewStore(serviceimpl.NewStore(persistenceimpl.NewStore())),
 	}.Register(engine)

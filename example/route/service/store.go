@@ -1,6 +1,6 @@
 package service
 
-import "github.com/raaaaaaaay86/ginutil/example/route/entity"
+import "github.com/raaaaaaaay86/ginkit/example/route/entity"
 
 type Store interface {
 	Create() (int64, error)

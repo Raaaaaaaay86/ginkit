@@ -5,7 +5,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/raaaaaaaay86/ginutil/example/route/entity"
+	"github.com/raaaaaaaay86/ginkit/example/route/entity"
 )
 
 type Store struct {

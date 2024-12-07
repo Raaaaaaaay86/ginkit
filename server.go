@@ -1,4 +1,4 @@
-package ginutil
+package ginkit
 
 import (
 	"context"

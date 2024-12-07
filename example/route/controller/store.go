@@ -6,28 +6,28 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/raaaaaaaay86/ginutil"
-	"github.com/raaaaaaaay86/ginutil/example/route/controller/dto"
-	"github.com/raaaaaaaay86/ginutil/example/route/middleware"
-	"github.com/raaaaaaaay86/ginutil/example/route/service"
+	"github.com/raaaaaaaay86/ginkit"
+	"github.com/raaaaaaaay86/ginkit/example/route/controller/dto"
+	"github.com/raaaaaaaay86/ginkit/example/route/middleware"
+	"github.com/raaaaaaaay86/ginkit/example/route/service"
 )
 
-var _ ginutil.RouteGroup = (*Store)(nil)
+var _ ginkit.RouteGroup = (*Store)(nil)
 
 type Store struct {
 	stores service.Store
 }
 
-func (s *Store) GetRoutes() []ginutil.RouteFactory {
-	return []ginutil.RouteFactory{
+func (s *Store) GetRoutes() []ginkit.RouteFactory {
+	return []ginkit.RouteFactory{
 		s.Create,
 		s.GetAll,
 		s.IncrementTotalIncome,
 	}
 }
 
-func (s *Store) v1(path string) ginutil.Path {
-	return ginutil.Path{
+func (s *Store) v1(path string) ginkit.Path {
+	return ginkit.Path{
 		Name: fmt.Sprintf("/v1%s", path),
 		Before: []gin.HandlerFunc{
 			middleware.PrintMessage("authentication..."),
@@ -35,8 +35,8 @@ func (s *Store) v1(path string) ginutil.Path {
 	}
 }
 
-func (s *Store) Create() ginutil.Route {
-	return ginutil.Route{
+func (s *Store) Create() ginkit.Route {
+	return ginkit.Route{
 		Method: http.MethodPost,
 		Path:   s.v1("/stores"),
 		Handler: func(c *gin.Context) {
@@ -51,8 +51,8 @@ func (s *Store) Create() ginutil.Route {
 	}
 }
 
-func (s *Store) GetAll() ginutil.Route {
-	return ginutil.Route{
+func (s *Store) GetAll() ginkit.Route {
+	return ginkit.Route{
 		Method: http.MethodGet,
 		Path:   s.v1("/stores"),
 		Handler: func(c *gin.Context) {
@@ -67,8 +67,8 @@ func (s *Store) GetAll() ginutil.Route {
 	}
 }
 
-func (s *Store) IncrementTotalIncome() ginutil.Route {
-	return ginutil.Route{
+func (s *Store) IncrementTotalIncome() ginkit.Route {
+	return ginkit.Route{
 		Method: http.MethodPut,
 		Path:   s.v1("/stores/:id/total-income/inc"),
 		Handler: func(c *gin.Context) {

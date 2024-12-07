@@ -1,4 +1,4 @@
-module github.com/raaaaaaaay86/ginutil
+module github.com/raaaaaaaay86/ginkit
 
 go 1.22.5
 

@@ -1,8 +1,8 @@
 package serviceimpl
 
 import (
-	"github.com/raaaaaaaay86/ginutil/example/route/entity"
-	"github.com/raaaaaaaay86/ginutil/example/route/persistence"
+	"github.com/raaaaaaaay86/ginkit/example/route/entity"
+	"github.com/raaaaaaaay86/ginkit/example/route/persistence"
 )
 
 type Store struct {

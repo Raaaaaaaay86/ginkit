@@ -6,23 +6,23 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/raaaaaaaay86/ginutil"
-	"github.com/raaaaaaaay86/ginutil/example/route/middleware"
+	"github.com/raaaaaaaay86/ginkit"
+	"github.com/raaaaaaaay86/ginkit/example/route/middleware"
 )
 
-var _ ginutil.RouteGroup = (*User)(nil)
+var _ ginkit.RouteGroup = (*User)(nil)
 
 type User struct {
 }
 
-func (u *User) GetRoutes() []ginutil.RouteFactory {
-	return []ginutil.RouteFactory{
+func (u *User) GetRoutes() []ginkit.RouteFactory {
+	return []ginkit.RouteFactory{
 		u.GetById,
 	}
 }
 
-func (u *User) v1(path string) ginutil.Path {
-	return ginutil.Path{
+func (u *User) v1(path string) ginkit.Path {
+	return ginkit.Path{
 		Name: fmt.Sprintf("/v1%s", path),
 		Before: []gin.HandlerFunc{
 			middleware.PrintMessage("v1: before"),
@@ -34,8 +34,8 @@ func (u *User) v1(path string) ginutil.Path {
 	}
 }
 
-func (u *User) GetById() ginutil.Route {
-	return ginutil.Route{
+func (u *User) GetById() ginkit.Route {
+	return ginkit.Route{
 		Method: http.MethodGet,
 		Path:   u.v1("/user/:id"),
 		Before: []gin.HandlerFunc{

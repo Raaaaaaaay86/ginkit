@@ -1,4 +1,4 @@
-package ginutil
+package ginkit
 
 import "github.com/gin-gonic/gin"
 

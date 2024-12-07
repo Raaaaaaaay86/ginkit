@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/raaaaaaaay86/ginutil/example/route/entity"
+import "github.com/raaaaaaaay86/ginkit/example/route/entity"
 
 type Store struct {
 	Id          int64 `json:"id"`
